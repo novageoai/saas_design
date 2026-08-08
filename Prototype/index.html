@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaGEO Visual Prototype | Generative Engine Optimization SaaS Simulation</title>
+  
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Prototype Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" width="20" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <span>Nova<span class="brand-highlight">GEO</span></span>
+        <span class="pill-badge" style="font-size: 0.68rem; padding: 2px 8px;">Prototype</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#audit" class="nav-link" data-i18n="nav_audit">Audit Simulator</a></li>
+        <li><a href="#scores" class="nav-link" data-i18n="nav_scores">Score Breakdown</a></li>
+        <li><a href="#kg" class="nav-link" data-i18n="nav_kg">Knowledge Graph</a></li>
+        <li><a href="#features" class="nav-link" data-i18n="nav_features">Infrastructure</a></li>
+      </ul>
+
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="lang-switch">
+          <button class="lang-btn active" id="langEn">EN</button>
+          <button class="lang-btn" id="langZh">繁中</button>
+        </div>
+        <a href="../index.html" class="btn btn-secondary" style="padding: 8px 14px; font-size: 0.85rem;" data-i18n="nav_back">
+          ← Back to Company Site
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <span class="pill-badge" data-i18n="hero_badge">GENERATIVE ENGINE OPTIMIZATION PLATFORM</span>
+
+        <h1 class="hero-title" data-i18n="hero_title">
+          Don't Get Erased by AI Answers. <span class="brand-highlight">Get Cited First.</span>
+        </h1>
+
+        <p class="hero-subtitle" data-i18n="hero_subtitle">
+          Visual simulation of NovaGEO SaaS infrastructure. Experience how automated AI search audits, separated score diagnostics, and knowledge graph engineering work.
+        </p>
+
+        <div>
+          <a href="#audit" class="btn btn-primary" data-i18n="hero_btn_primary">Simulate GEO Audit →</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-visual-card">
+          <img src="assets/dashboard_mockup.png" alt="NovaGEO Platform Prototype Mockup">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Audit Simulator Section -->
+  <section id="audit" class="interactive-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="pill-badge" data-i18n="sim_badge">INTERACTIVE PROTOTYPE SANDBOX</span>
+        <h2 class="section-title" data-i18n="sim_title">
+          Interactive <span class="brand-highlight">AI Citation Audit</span> Simulator
+        </h2>
+      </div>
+
+      <div class="simulator-card">
+        <!-- Input Row -->
+        <div class="sim-input-grid">
+          <div>
+            <label class="sim-input-label" data-i18n="sim_label_domain">TARGET SME WEBSITE DOMAIN</label>
+            <input type="text" id="auditDomainInput" class="sim-input" value="www.cybertech-hk.com" placeholder="e.g. www.your-hk-business.com.hk">
+          </div>
+
+          <div>
+            <label class="sim-input-label" data-i18n="sim_label_industry">SELECT BUSINESS SECTOR</label>
+            <select id="industrySelect" class="sim-input">
+              <option value="FinTech">HK FinTech & Financial Services</option>
+              <option value="Logistics">Supply Chain & GBA Logistics</option>
+              <option value="Professional">Legal, Accounting & Consulting</option>
+            </select>
+          </div>
+
+          <div>
+            <button id="runAuditBtn" class="btn btn-primary" style="width: 100%; white-space: nowrap;" data-i18n="sim_btn_run">
+              Run Live GEO Scan →
+            </button>
+          </div>
+        </div>
+
+        <!-- Preset Chips -->
+        <div class="sim-preset-chips">
+          <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-secondary);" data-i18n="sim_presets_label">POPULAR SME PRESETS:</span>
+          <button class="preset-chip active" data-domain="www.cybertech-hk.com">CyberTech HK</button>
+          <button class="preset-chip" data-domain="www.gba-logistics.com.hk">GBA Supply Chain</button>
+          <button class="preset-chip" data-domain="www.hk-finance-solutions.hk">HK FinTech Advisors</button>
+        </div>
+
+        <!-- Audit Real-time Step Progress -->
+        <div class="checklist-container" style="margin-top: 24px;">
+          <div class="checklist-title">LIVE GEO AUDIT EXECUTION PROGRESS</div>
+          <div class="checklist-grid">
+            <div class="step-row pending" id="step1Row">
+              <div class="step-icon-box" id="step1Icon">1</div>
+              <div class="step-text">
+                <span class="step-name" data-i18n="step_1_name">Domain & SSL Handshake</span>
+                <span class="step-desc" data-i18n="step_1_desc">Validating endpoint security, canonical headers, and crawl accessibility</span>
+              </div>
+            </div>
+
+            <div class="step-row pending" id="step2Row">
+              <div class="step-icon-box" id="step2Icon">2</div>
+              <div class="step-text">
+                <span class="step-name" data-i18n="step_2_name">Technical Schema & Structure Parsing</span>
+                <span class="step-desc" data-i18n="step_2_desc">Extracting JSON-LD microdata, HTML5 semantics, and DOM node clarity</span>
+              </div>
+            </div>
+
+            <div class="step-row pending" id="step3Row">
+              <div class="step-icon-box" id="step3Icon">3</div>
+              <div class="step-text">
+                <span class="step-name" data-i18n="step_3_name">Semantic Vector Alignment Check</span>
+                <span class="step-desc" data-i18n="step_3_desc">Computing cosine similarity across LLM embedding vector spaces</span>
+              </div>
+            </div>
+
+            <div class="step-row pending" id="step4Row">
+              <div class="step-icon-box" id="step4Icon">4</div>
+              <div class="step-text">
+                <span class="step-name" data-i18n="step_4_name">Multi-LLM Citation Simulation</span>
+                <span class="step-desc" data-i18n="step_4_desc">Simulating generative prompt benchmarks on ChatGPT, Perplexity & Claude</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overall Score Banner -->
+        <div class="overall-score-banner">
+          <div class="overall-score-left">
+            <!-- Animated Spinner Gauge for Overall Score -->
+            <div class="spinner-gauge lg" id="overallGauge">
+              <svg viewBox="0 0 100 100">
+                <circle class="spinner-track" cx="50" cy="50" r="40" />
+                <circle class="spinner-fill" id="overallSpinnerCircle" cx="50" cy="50" r="40" />
+              </svg>
+              <div class="spinner-value" id="overallScoreVal">0%</div>
+            </div>
+
+            <div class="overall-score-info">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span class="status-badge blue" id="overallStatusBadge" data-i18n="overall_status_high">HIGH CITATION LIKELIHOOD</span>
+              </div>
+              <h3 data-i18n="overall_title">OVERALL AI CITATION PROBABILITY</h3>
+              <p id="overallSummaryText" data-i18n="overall_summary">
+                Your brand demonstrates strong structural signals but requires targeted entity reinforcement for top-tier generative engine recommendations.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Separated Score Breakdown Cards (Explicit Requirement) -->
+        <div id="scores" class="separated-scores-header">
+          <span class="pill-badge" data-i18n="breakdown_badge">SEPARATED SCORE DIAGNOSTICS</span>
+          <h3 style="font-size: 1.5rem; margin-top: 8px;" data-i18n="breakdown_title">
+            Separated <span class="brand-highlight">GEO Performance</span> Metrics
+          </h3>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 4px;" data-i18n="breakdown_subtitle">
+            Granular evaluation across the three fundamental pillars of Generative Engine Optimization.
+          </p>
+        </div>
+
+        <div class="separated-scores-grid">
+          <!-- Separated Score 1: Technical Readability -->
+          <div class="score-card">
+            <div>
+              <div class="score-card-top">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div class="score-icon-wrapper green" id="techIconBox">
+                    <i data-lucide="code"></i>
+                  </div>
+                  <div>
+                    <div class="score-card-title" data-i18n="score_tech_title">Technical Readability</div>
+                    <span class="status-badge green" id="techBadge">92/100 • EXCELLENT</span>
+                  </div>
+                </div>
+
+                <!-- Animated Score Spinner -->
+                <div class="spinner-gauge">
+                  <svg viewBox="0 0 100 100">
+                    <circle class="spinner-track" cx="50" cy="50" r="40" />
+                    <circle class="spinner-fill" id="techSpinnerCircle" cx="50" cy="50" r="40" />
+                  </svg>
+                  <div class="spinner-value" id="techScoreVal">0</div>
+                </div>
+              </div>
+
+              <div class="score-card-explanation" style="margin-top: 16px;" data-i18n="score_tech_desc">
+                Measures Schema.org JSON-LD microdata structure, semantic DOM hierarchy, and TTFB server response. Clean technical formatting allows LLM web crawlers (GPTBot, PerplexityBot, ClaudeBot) to parse company facts cleanly without extraction errors.
+              </div>
+            </div>
+
+            <div class="linear-progress-wrapper">
+              <div class="linear-progress-track">
+                <div class="linear-progress-fill green" id="techLinearFill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Separated Score 2: Semantic Relevance -->
+          <div class="score-card">
+            <div>
+              <div class="score-card-top">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div class="score-icon-wrapper orange" id="semIconBox">
+                    <i data-lucide="cpu"></i>
+                  </div>
+                  <div>
+                    <div class="score-card-title" data-i18n="score_sem_title">Semantic Relevance</div>
+                    <span class="status-badge orange" id="semBadge">78/100 • GOOD</span>
+                  </div>
+                </div>
+
+                <!-- Animated Score Spinner -->
+                <div class="spinner-gauge">
+                  <svg viewBox="0 0 100 100">
+                    <circle class="spinner-track" cx="50" cy="50" r="40" />
+                    <circle class="spinner-fill" id="semSpinnerCircle" cx="50" cy="50" r="40" />
+                  </svg>
+                  <div class="spinner-value" id="semScoreVal">0</div>
+                </div>
+              </div>
+
+              <div class="score-card-explanation" style="margin-top: 16px;" data-i18n="score_sem_desc">
+                Evaluates vector embedding proximity against high-intent search query clusters, entity density, and contextual clarity. Ensures generative AI models recognize your content as authoritative direct-answer material.
+              </div>
+            </div>
+
+            <div class="linear-progress-wrapper">
+              <div class="linear-progress-track">
+                <div class="linear-progress-fill orange" id="semLinearFill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Separated Score 3: Current AI Visibility -->
+          <div class="score-card">
+            <div>
+              <div class="score-card-top">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div class="score-icon-wrapper red" id="visIconBox">
+                    <i data-lucide="eye"></i>
+                  </div>
+                  <div>
+                    <div class="score-card-title" data-i18n="score_vis_title">Current AI Visibility</div>
+                    <span class="status-badge red" id="visBadge">64/100 • ACTION NEEDED</span>
+                  </div>
+                </div>
+
+                <!-- Animated Score Spinner -->
+                <div class="spinner-gauge">
+                  <svg viewBox="0 0 100 100">
+                    <circle class="spinner-track" cx="50" cy="50" r="40" />
+                    <circle class="spinner-fill" id="visSpinnerCircle" cx="50" cy="50" r="40" />
+                  </svg>
+                  <div class="spinner-value" id="visScoreVal">0</div>
+                </div>
+              </div>
+
+              <div class="score-card-explanation" style="margin-top: 16px;" data-i18n="score_vis_desc">
+                Tracks real-time brand citation frequency, factual accuracy, and URL attribution across ChatGPT, Perplexity, Claude, and Gemini responses for competitive industry prompts.
+              </div>
+            </div>
+
+            <div class="linear-progress-wrapper">
+              <div class="linear-progress-track">
+                <div class="linear-progress-fill red" id="visLinearFill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Knowledge Graph Visualizer Section -->
+  <section id="kg" class="kg-section">
+    <div class="container kg-grid">
+      <div>
+        <span class="pill-badge" data-i18n="kg_badge">ZERO HALLUCINATION SCHEMA</span>
+        <h2 class="section-title" style="text-align: left; margin-top: 12px;" data-i18n="kg_title">
+          Bilingual <span class="brand-highlight">Knowledge Graph</span> Visualizer
+        </h2>
+        <p class="section-subtitle" style="text-align: left; margin-top: 12px;" data-i18n="kg_desc">
+          Dynamic graph canvas connecting company credentials, core services, and product facts into machine-readable entity networks.
+        </p>
+      </div>
+
+      <div class="kg-canvas-card">
+        <canvas id="kgCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Infrastructure Section -->
+  <section id="features" class="infra-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="pill-badge" data-i18n="infra_badge">SAAS ARCHITECTURE</span>
+        <h2 class="section-title" data-i18n="infra_title">
+          Core Platform <span class="brand-highlight">Infrastructure</span>
+        </h2>
+      </div>
+
+      <div class="infra-grid">
+        <div class="infra-card">
+          <div class="infra-icon-box">
+            <i data-lucide="search"></i>
+          </div>
+          <h3 data-i18n="pillar1_title">1. Generative Discovery Audit</h3>
+          <p data-i18n="pillar1_desc">
+            Automated crawling engine simulating search queries across top LLM search engines to compute citation likelihood.
+          </p>
+        </div>
+
+        <div class="infra-card">
+          <div class="infra-icon-box">
+            <i data-lucide="share-2"></i>
+          </div>
+          <h3 data-i18n="pillar2_title">2. Knowledge Graph Engineering</h3>
+          <p data-i18n="pillar2_desc">
+            Bilingual JSON-LD schema builder mapping SME entity networks for seamless AI ingestion.
+          </p>
+        </div>
+
+        <div class="infra-card">
+          <div class="infra-icon-box">
+            <i data-lucide="layers"></i>
+          </div>
+          <h3 data-i18n="pillar3_title">3. Semantic Engineering Layer</h3>
+          <p data-i18n="pillar3_desc">
+            Vector alignment engine optimizing context windows, entity density, and citation hooks.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div>NovaGEO Visual Platform Prototype © 2026. All rights reserved.</div>
+      <a href="../index.html" style="color: var(--brand-blue); font-weight: 600;" data-i18n="nav_back">
+        ← Back to Company & Team Website
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+  <script src="js/translations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

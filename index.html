@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaGEO | The Generative Engine Optimization (GEO) Company & Team</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="NovaGEO is a Hong Kong AI tech startup founded by HKUST PhD CS research and CityU Information Management leadership, pioneering Generative Engine Optimization (GEO) infrastructure for SMEs.">
+  <meta name="keywords" content="NovaGEO, NovaGEO Team, Jessie WONG, Man-Kit LAU, Natalie CHOI, Rita CAI, HKUST PhD, CityU Information Management, Generative Engine Optimization, HKSTP SME, GBA AI Search">
+  <meta name="author" content="NovaGEO Founders: Jessie WONG, Man-Kit LAU, Natalie CHOI, & Rita CAI">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="NovaGEO | Founding Team, Vision & R&D Foundation">
+  <meta property="og:description" content="Meet the HKUST PhD & CityU team bridging academic AI research and Generative Engine Optimization for Hong Kong and GBA SMEs.">
+  <meta property="og:image" content="assets/company_hero.png">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <span>Nova<span class="gradient-text">GEO</span></span>
+        <span class="logo-tag">Company</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#about" class="nav-link" data-i18n="nav_about">About Us</a></li>
+        <li><a href="#vision" class="nav-link" data-i18n="nav_vision">Our Vision</a></li>
+        <li><a href="#research" class="nav-link" data-i18n="nav_research">R&D Foundation</a></li>
+        <li><a href="#team" class="nav-link" data-i18n="nav_team">Leadership Team</a></li>
+        <li><a href="#schedule" class="nav-link" data-i18n="nav_roadmap">Strategic Schedule</a></li>
+        <li><a href="#future" class="nav-link" data-i18n="nav_future">Future Horizon</a></li>
+        <li><a href="./Prototype/index.html" class="nav-link" style="color: var(--primary-cyan); font-weight: 700;" data-i18n="nav_prototype">Platform Prototype</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Language Selector -->
+        <div class="lang-switch">
+          <button class="lang-btn active" id="langEn">EN</button>
+          <button class="lang-btn" id="langZh">繁中</button>
+        </div>
+        <a href="#contact" class="btn btn-primary open-contact-modal" data-i18n="nav_contact">Connect With Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="badge">
+          <span class="badge-pulse"></span>
+          <span data-i18n="hero_badge">Generative Engine Optimization (GEO) Company & Research</span>
+        </div>
+
+        <h1 class="hero-title" data-i18n="hero_title">
+          Bridging Academic AI Research & <span class="gradient-text">SME Search Visibility</span>
+        </h1>
+
+        <p class="hero-subtitle" data-i18n="hero_subtitle">
+          Founded by HKUST AI PhD research and CityU Information Management leadership, NovaGEO is pioneering Generative Engine Optimization (GEO) infrastructure to empower Hong Kong & Greater Bay Area businesses in the era of AI answers.
+        </p>
+
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="#team" class="btn btn-primary" data-i18n="hero_btn_primary">Meet Our Founding Team</a>
+          <a href="#research" class="btn btn-secondary" data-i18n="hero_btn_secondary">Explore Our Research</a>
+          <a href="./Prototype/index.html" class="btn btn-secondary" style="border-color: var(--primary-cyan); color: #38bdf8;" data-i18n="hero_btn_prototype">
+            <i data-lucide="external-link" style="width: 16px; height: 16px;"></i> Platform Prototype
+          </a>
+        </div>
+
+        <div class="hero-trust-bar">
+          <div class="trust-item">
+            <i data-lucide="graduation-cap"></i>
+            <span data-i18n="trust_hkust">HKUST PhD Computer Science Research</span>
+          </div>
+          <div class="trust-item">
+            <i data-lucide="award"></i>
+            <span data-i18n="trust_cityu">CityU Information Management Leadership</span>
+          </div>
+          <div class="trust-item">
+            <i data-lucide="building-2"></i>
+            <span data-i18n="trust_hkstp">HKSTP Startup Ecosystem Connection</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Showcase -->
+      <div class="hero-visual">
+        <div class="hero-visual-card glass-card">
+          <img src="assets/company_hero.png" alt="NovaGEO Company & Team Hero Banner">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company & Vision Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Our Purpose & Mission</span>
+        <h2 class="section-title" id="vision" data-i18n="about_title">Who We Are & The Vision</h2>
+        <p class="section-desc" data-i18n="about_desc">
+          We are an AI research-driven company dedicated to solving the zero-click invisibility crisis for Hong Kong and regional SMEs.
+        </p>
+      </div>
+
+      <div class="glass-card about-card">
+        <h3 style="color: #fff; font-size: 1.4rem;" data-i18n="about_story_title">The Zero-Click Crisis & Our Purpose</h3>
+        <p data-i18n="about_story_p1">
+          In the traditional search era, businesses generated leads through links and web traffic. Today, Generative AI engines like Perplexity, Google AI Overviews, and ChatGPT synthesize direct answers for users — resulting in a 'Zero-Click Exit' where uncited businesses become completely invisible.
+        </p>
+        <p data-i18n="about_story_p2">
+          Most Hong Kong SMEs are optimized for traditional link building, leaving them vulnerable as AI search transforms customer discovery. NovaGEO was formed to bridge this technological gap, turning company websites into machine-readable knowledge graphs that AI models understand and cite as primary authorities.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Academic & Research Foundation Section -->
+  <section id="research" class="research-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">R&D Breakthroughs</span>
+        <h2 class="section-title" data-i18n="research_title">Academic & R&D Foundation</h2>
+        <p class="section-desc" data-i18n="research_desc">
+          Our work builds upon rigorous mathematical modeling and computational research in advanced AI, natural language processing, and neural networks.
+        </p>
+        <div style="margin-top: 8px;">
+          <span style="font-size: 0.85rem; padding: 4px 12px; border-radius: 6px; background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); border: 1px solid rgba(16, 185, 129, 0.3); font-weight: 700;" data-i18n="research_status">
+            CURRENT STATUS: Conceptual Architecture Complete
+          </span>
+        </div>
+      </div>
+
+      <div class="research-grid">
+        <!-- R&D Card 1 -->
+        <div class="glass-card research-card">
+          <div class="res-icon">
+            <i data-lucide="binary"></i>
+          </div>
+          <h3 style="font-size: 1.25rem;" data-i18n="res_card1_title">Core Scoring Algorithm Framework</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="res_card1_desc">
+            Quantifies latent space matching and citation probability across large language models, giving businesses a predictable benchmark for AI search exposure.
+          </p>
+        </div>
+
+        <!-- R&D Card 2 -->
+        <div class="glass-card research-card">
+          <div class="res-icon">
+            <i data-lucide="languages"></i>
+          </div>
+          <h3 style="font-size: 1.25rem;" data-i18n="res_card2_title">Bilingual Vector Space Alignment</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="res_card2_desc">
+            Specialized semantic mapping methodology designed specifically for Hong Kong Traditional Chinese, local Cantonese terminology, and English cross-lingual search context.
+          </p>
+        </div>
+
+        <!-- R&D Card 3 -->
+        <div class="glass-card research-card">
+          <div class="res-icon">
+            <i data-lucide="shield-check"></i>
+          </div>
+          <h3 style="font-size: 1.25rem;" data-i18n="res_card3_title">Quantifying E-E-A-T Signals</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="res_card3_desc">
+            Translating Experience, Expertise, Authoritativeness, and Trustworthiness (E-E-A-T) into structured machine-verifiable data schemas.
+          </p>
+        </div>
+      </div>
+
+      <!-- Platform Prototype Banner Callout Card -->
+      <div class="glass-card" style="margin-top: 40px; padding: 32px; border: 1px solid var(--border-glow); background: linear-gradient(135deg, rgba(18, 26, 43, 0.9), rgba(6, 182, 212, 0.08)); display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+        <div>
+          <h3 style="font-size: 1.3rem; color: #fff; margin-bottom: 8px;" data-i18n="proto_banner_title">Explore Our Software Visual Prototype</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 680px;" data-i18n="proto_banner_desc">
+            Want to see how our envisioned SaaS infrastructure will look and function? Launch our interactive platform prototype demo.
+          </p>
+        </div>
+        <a href="./Prototype/index.html" class="btn btn-primary" style="padding: 12px 28px;" data-i18n="proto_banner_btn">
+          <i data-lucide="layout" style="width: 18px; height: 18px;"></i> Launch Platform Prototype
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founding Leadership Team Section -->
+  <section id="team" class="team-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Founders & Leadership</span>
+        <h2 class="section-title" data-i18n="team_title">Founding Leadership Team</h2>
+        <p class="section-desc" data-i18n="team_desc">
+          A synergistic team combining PhD-level AI research from HKUST with information management and business execution from CityU.
+        </p>
+      </div>
+
+      <div class="team-extended-grid">
+        <!-- Team Member 1: CTO -->
+        <div class="glass-card team-member-card">
+          <div class="member-avatar">LM</div>
+          <div class="member-details">
+            <h3 class="member-name" data-i18n="t1_name">Lau Man Kit</h3>
+            <div class="member-role" data-i18n="t1_role">Chief Technology Officer (CTO)</div>
+            <div class="member-edu" data-i18n="t1_edu">
+              <i data-lucide="graduation-cap" style="width: 16px; height: 16px;"></i>
+              PhD in Computer Science, HKUST (2020) | University Lecturer
+            </div>
+            <p class="member-bio" data-i18n="t1_bio">
+              Dr. Lau is an expert in advanced AI and neural algorithms, teaching SEO and LLM courses at the university level. He leads NovaGEO's technical architecture, algorithm design, and transition to Generative Engine Optimization.
+            </p>
+          </div>
+        </div>
+
+        <!-- Team Member 2: Marketing & PIC -->
+        <div class="glass-card team-member-card">
+          <div class="member-avatar">JW</div>
+          <div class="member-details">
+            <h3 class="member-name" data-i18n="t2_name">Jessie Wong</h3>
+            <div class="member-role" data-i18n="t2_role">Sales & Marketing Manager (PIC)</div>
+            <div class="member-edu" data-i18n="t2_edu">
+              <i data-lucide="graduation-cap" style="width: 16px; height: 16px;"></i>
+              BBA in Information Management, Marketing Minor, CityU
+            </div>
+            <p class="member-bio" data-i18n="t2_bio">
+              Jessie leads business operations, market research, and strategic partnerships. She specializes in SME customer validation, B2B sales execution, and university-industry collaboration.
+            </p>
+          </div>
+        </div>
+
+        <!-- Team Member 3: Operations -->
+        <div class="glass-card team-member-card">
+          <div class="member-avatar">NC</div>
+          <div class="member-details">
+            <h3 class="member-name" data-i18n="t3_name">Natalie Choi</h3>
+            <div class="member-role" data-i18n="t3_role">Project & Operations Manager</div>
+            <div class="member-edu" data-i18n="t3_edu">
+              <i data-lucide="graduation-cap" style="width: 16px; height: 16px;"></i>
+              BBA in Information Management, CityU
+            </div>
+            <p class="member-bio" data-i18n="t3_bio">
+              Natalie is responsible for operational workflows, project execution, and platform delivery. She excels in solution-oriented problem solving and streamlining complex project milestones.
+            </p>
+          </div>
+        </div>
+
+        <!-- Team Member 4: Finance -->
+        <div class="glass-card team-member-card">
+          <div class="member-avatar">RC</div>
+          <div class="member-details">
+            <h3 class="member-name" data-i18n="t4_name">Rita Cai</h3>
+            <div class="member-role" data-i18n="t4_role">Accounting & Financial Manager</div>
+            <div class="member-edu" data-i18n="t4_bio_edu">
+              <i data-lucide="graduation-cap" style="width: 16px; height: 16px;"></i>
+              BBA in Information Management, CityU
+            </div>
+            <p class="member-bio" data-i18n="t4_bio">
+              Rita manages financial market analysis, budgeting, and commercial modeling. She brings strong expertise in accounting, risk assessment, and social media sales operations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12-Month Strategic Roadmap & Schedule Section -->
+  <section id="schedule" class="schedule-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Project Execution Plan</span>
+        <h2 class="section-title" data-i18n="schedule_title">12-Month Strategic Roadmap & Schedule</h2>
+        <p class="section-desc" data-i18n="schedule_desc">
+          Our phased project schedule spanning Business Development, Technology R&D, and Financial Planning.
+        </p>
+      </div>
+
+      <div class="quarter-nav">
+        <button class="quarter-tab active" data-q="1">Q1 Phase</button>
+        <button class="quarter-tab" data-q="2">Q2 Phase</button>
+        <button class="quarter-tab" data-q="3">Q3 Phase</button>
+        <button class="quarter-tab" data-q="4">Q4 Phase</button>
+      </div>
+
+      <!-- Q1 Content -->
+      <div id="q-content-1" class="schedule-detail-card glass-card quarter-content">
+        <h3 style="font-size: 1.3rem;" data-i18n="q1_header">Q1: Market Research & Core Development</h3>
+        <div class="schedule-pillar">
+          <span class="pillar-header biz"><i data-lucide="briefcase"></i> Business Development</span>
+          <p style="color: var(--text-muted); font-size: 0.95rem;" data-i18n="q1_biz">University market research collaboration, HKSTP company networking, SME interviews & problem validation.</p>
+        </div>
+        <div class="schedule-pillar">
+          <span class="pillar-header tech"><i data-lucide="code-2"></i> Technology R&D</span>
+          <p style="color: var(--text-muted); font-size: 0.95rem;" data-i18n="q1_tech">UI/UX design, MVP crawler development, API integration & audit algorithm calibration.</p>
+        </div>
+        <div class="schedule-pillar">
+          <span class="pillar-header fin"><i data-lucide="dollar-sign"></i> Finance & Operations</span>
+          <p style="color: var(--text-muted); font-size: 0.95rem;" data-i18n="q1_fin">Company setup, bank account opening, incubation preparation.</p>
+        </div>
+      </div>
+
+      <!-- Q2 Content -->
+      <div id="q-content-2" class="schedule-detail-card glass-card quarter-content" style="display: none;">
+        <h3 style="font-size: 1.3rem;" data-i18n="q2_header">Q2: MVP Launch & Alpha Testing</h3>
+        <div class="schedule-pillar">
+          <span class="pillar-header biz"><i data-lucide="briefcase"></i> Business Development</span>
+          <p style="color: var(--text-muted); font-size: 0.95rem;" data-i18n="q2_biz">Promote MVP to university and HKSTP ecosystem partners for beta testing.</p>
+        </div>
+        <div class="schedule-pillar">
+          <span class="pillar-header tech"><i data-lucide="code-2"></i> Technology R&D</span>
+          <p style="color: var(--text-muted); font-size: 0.95rem;" data-i18n="q2_tech">Develop Semantic Engineering feature, perform alpha testing.</p>
+        </div>
+        <div class="schedule-pillar">
+          <span class="pillar-header fin"><i data-lucide="dollar-sign"></i> Finance & Operations</span>
+          <p style="color: var(--text-muted); font-size: 0.95rem;" data-i18n="q2_fin">Payment gateway negotiations with PayPal and banking partners.</p>
+        </div>
+      </div>
+
+      <!-- Q3 Content -->
+      <div id="q-content-3" class="schedule-detail-card glass-card quarter-content" style="display: none;">
+        <h3 style="font-size: 1.3rem;" data-i18n="q3_header">Q3: Feature Release & Community</h3>
+        <div class="schedule-pillar">
+          <span class="pillar-header biz"><i data-lucide="briefcase"></i> Business Development</span>
+          <p style="color: var(--text-muted); font-size: 0.95rem;" data-i18n="q3_biz">Establish social media channels, perform GEO on our platform, conduct HK industry webinars.</p>
+        </div>
+        <div class="schedule-pillar">
+          <span class="pillar-header tech"><i data-lucide="code-2"></i> Technology R&D</span>
+          <p style="color: var(--text-muted); font-size: 0.95rem;" data-i18n="q3_tech">Release Semantic Engineering feature, develop Dynamic Knowledge Graph module.</p>
+        </div>
+        <div class="schedule-pillar">
+          <span class="pillar-header fin"><i data-lucide="dollar-sign"></i> Finance & Operations</span>
+          <p style="color: var(--text-muted); font-size: 0.95rem;" data-i18n="q3_fin">Online payment gateway implementation complete.</p>
+        </div>
+      </div>
+
+      <!-- Q4 Content -->
+      <div id="q-content-4" class="schedule-detail-card glass-card quarter-content" style="display: none;">
+        <h3 style="font-size: 1.3rem;" data-i18n="q4_header">Q4: Commercial Rollout & Expansion</h3>
+        <div class="schedule-pillar">
+          <span class="pillar-header biz"><i data-lucide="briefcase"></i> Business Development</span>
+          <p style="color: var(--text-muted); font-size: 0.95rem;" data-i18n="q4_biz">Launch tiered subscription to beta partners, establish White-label Agency program.</p>
+        </div>
+        <div class="schedule-pillar">
+          <span class="pillar-header tech"><i data-lucide="code-2"></i> Technology R&D</span>
+          <p style="color: var(--text-muted); font-size: 0.95rem;" data-i18n="q4_tech">Release Knowledge Graph feature, finalize automated platform suite.</p>
+        </div>
+        <div class="schedule-pillar">
+          <span class="pillar-header fin"><i data-lucide="dollar-sign"></i> Finance & Operations</span>
+          <p style="color: var(--text-muted); font-size: 0.95rem;" data-i18n="q4_fin">Apply for HKSTP Incubation program & expand into Greater Bay Area (GBA).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Future R&D Horizon Section -->
+  <section id="future" class="future-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Long-Term Innovation</span>
+        <h2 class="section-title" data-i18n="future_title">Future R&D Horizon (Beyond Ideation)</h2>
+        <p class="section-desc" data-i18n="future_desc">
+          Long-term innovation initiatives advancing the state of Generative Engine Optimization.
+        </p>
+      </div>
+
+      <div class="future-grid">
+        <div class="glass-card future-card">
+          <i data-lucide="image" style="color: var(--primary-cyan); width: 32px; height: 32px;"></i>
+          <h4 data-i18n="f1_title">Multi-Modal GEO</h4>
+          <p data-i18n="f1_desc">Extending citation optimization to AI vision, video, and audio synthesis models.</p>
+        </div>
+
+        <div class="glass-card future-card">
+          <i data-lucide="shield-alert" style="color: var(--accent-emerald); width: 32px; height: 32px;"></i>
+          <h4 data-i18n="f2_title">Defensive GEO & Anti-Hallucination</h4>
+          <p data-i18n="f2_desc">Building real-time fact-checking shields to protect brand reputation against AI search hallucinations.</p>
+        </div>
+
+        <div class="glass-card future-card">
+          <i data-lucide="network" style="color: var(--accent-purple); width: 32px; height: 32px;"></i>
+          <h4 data-i18n="f3_title">Vertical Knowledge Graphs</h4>
+          <p data-i18n="f3_desc">Domain-specific schema models for FinTech, Healthcare, Supply Chain, and Legal sectors.</p>
+        </div>
+
+        <div class="glass-card future-card">
+          <i data-lucide="blocks" style="color: var(--accent-amber); width: 32px; height: 32px;"></i>
+          <h4 data-i18n="f4_title">Ecosystem CMS Plugins</h4>
+          <p data-i18n="f4_desc">One-click GEO integration plugins for popular CMS platforms like WordPress and Webflow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <span>Nova<span class="gradient-text">GEO</span></span>
+        </div>
+
+        <div style="font-size: 0.88rem; color: var(--text-dim);">
+          Founded by Jessie WONG, Man-Kit LAU, Natalie CHOI, & Rita CAI.
+        </div>
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="./Prototype/index.html" class="btn btn-secondary" style="font-size: 0.85rem; border-color: var(--border-glow);" data-i18n="nav_prototype">
+            Platform Prototype
+          </a>
+          <button class="btn btn-primary open-contact-modal" data-i18n="nav_contact">
+            Connect With Us
+          </button>
+        </div>
+      </div>
+
+      <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); text-align: center; font-size: 0.82rem; color: var(--text-dim);">
+        © 2026 NovaGEO Initiative. All rights reserved. HKUST & CityU Founder Network.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Dialog for Connecting with Founders -->
+  <div id="contactModal" class="modal-overlay">
+    <div class="modal-box">
+      <button id="closeModalBtn" class="modal-close">&times;</button>
+      <h3 style="font-size: 1.4rem; margin-bottom: 8px;" data-i18n="modal_title">Connect with NovaGEO Founding Team</h3>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;" data-i18n="modal_desc">
+        Inquire about research collaboration, SME customer interviews, HKSTP ecosystem partnerships, or investment.
+      </p>
+
+      <form id="contactForm">
+        <div class="form-group">
+          <label class="form-label" data-i18n="modal_name">Your Full Name</label>
+          <input type="text" class="form-input" required placeholder="e.g. Dr. Alex Chan">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" data-i18n="modal_email">Email Address</label>
+          <input type="email" class="form-input" required placeholder="alex.chan@company.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" data-i18n="modal_org">Organization / SME Name</label>
+          <input type="text" class="form-input" required placeholder="e.g. HKSTP Partner / SME">
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;" data-i18n="modal_submit">
+          Send Message to Founders
+        </button>
+      </form>
+
+      <div id="modalSuccessMsg" style="display: none; text-align: center; padding: 20px 0;">
+        <i data-lucide="check-circle" style="width: 48px; height: 48px; color: var(--accent-emerald); margin-bottom: 12px;"></i>
+        <h4 style="font-size: 1.2rem; color: #fff; margin-bottom: 8px;">Message Sent!</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem;" data-i18n="modal_success">
+          Thank you for reaching out! Our founding team will respond to your message within 24 hours.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Initialize Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
+
+  <!-- Application Logic Scripts -->
+  <script src="js/translations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
