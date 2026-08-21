@@ -6,36 +6,272 @@
 document.addEventListener('DOMContentLoaded', () => {
   let currentLang = 'en';
 
-  const langEnBtn = document.getElementById('langEn');
-  const langZhBtn = document.getElementById('langZh');
+  // Track latest scores for language badge re-rendering
+  let lastScores = {
+    tech: 92,
+    sem: 78,
+    vis: 64,
+    overall: 84
+  };
 
-  function updateLanguage(lang) {
-    currentLang = lang;
-    if (lang === 'en') {
-      if (langEnBtn) langEnBtn.classList.add('active');
-      if (langZhBtn) langZhBtn.classList.remove('active');
-    } else {
-      if (langZhBtn) langZhBtn.classList.add('active');
-      if (langEnBtn) langEnBtn.classList.remove('active');
-    }
+  function getProtoLangEnButtons() {
+    return document.querySelectorAll('#langEn, #protoMobileLangEn, .lang-btn-en');
+  }
 
-    const dict = translations[lang];
-    if (!dict) return;
+  function getProtoLangZhButtons() {
+    return document.querySelectorAll('#langZh, #protoMobileLangZh, .lang-btn-zh');
+  }
 
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (dict[key]) {
-        el.innerHTML = dict[key];
+  function getInitialLanguage() {
+    // 1. URL Query Parameter (?lang=zh or ?lang=en)
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const paramLang = params.get('lang');
+      if (paramLang === 'zh' || paramLang === 'en') {
+        return paramLang;
+      }
+    } catch (e) {}
+
+    // 2. LocalStorage
+    try {
+      const saved = localStorage.getItem('novageo_lang');
+      if (saved === 'zh' || saved === 'en') {
+        return saved;
+      }
+    } catch (e) {}
+
+    // 3. Default
+    return 'en';
+  }
+
+  function updateCrossPageLinks(lang) {
+    document.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+
+      if (href.includes('../index.html') || href === '../' || href.includes('../#') || href.includes('../?')) {
+        const parts = href.split('#');
+        const basePath = parts[0].split('?')[0];
+        const hash = parts[1] ? `#${parts[1]}` : '';
+        link.setAttribute('href', `${basePath}?lang=${lang}${hash}`);
       }
     });
+  }
 
-    if (window.lucide) {
+  function updateScoreBadges() {
+    const techBadge = document.getElementById('techBadge');
+    const semBadge = document.getElementById('semBadge');
+    const visBadge = document.getElementById('visBadge');
+    const overallStatusBadge = document.getElementById('overallStatusBadge');
+
+    const techScore = lastScores.tech;
+    const semScore = lastScores.sem;
+    const visScore = lastScores.vis;
+    const overallScore = lastScores.overall;
+
+    if (techBadge) {
+      const isExcellent = techScore >= 90;
+      const statusText = currentLang === 'en' ? (isExcellent ? 'EXCELLENT' : 'GOOD') : (isExcellent ? '優秀' : '良好');
+      techBadge.innerText = `${techScore}/100 • ${statusText}`;
+    }
+
+    if (semBadge) {
+      const isGood = semScore >= 80;
+      const statusText = currentLang === 'en' ? (isGood ? 'GOOD' : 'IMPROVEMENT AVAILABLE') : (isGood ? '良好' : '有待改進');
+      semBadge.innerText = `${semScore}/100 • ${statusText}`;
+    }
+
+    if (visBadge) {
+      const isVisModerate = visScore >= 70;
+      const statusText = currentLang === 'en' ? (isVisModerate ? 'MODERATE' : 'ACTION NEEDED') : (isVisModerate ? '中等' : '需即時優化');
+      visBadge.innerText = `${visScore}/100 • ${statusText}`;
+    }
+
+    if (overallStatusBadge) {
+      const isHigh = overallScore >= 80;
+      overallStatusBadge.innerText = currentLang === 'en'
+        ? (isHigh ? 'HIGH CITATION LIKELIHOOD' : 'MODERATE CITATION LIKELIHOOD')
+        : (isHigh ? '高引用概率等級' : '中等引用概率等級');
+    }
+  }
+
+  function updateLanguage(lang, syncUrl = true) {
+    currentLang = (lang === 'zh') ? 'zh' : 'en';
+
+    // Persist to localStorage
+    try {
+      localStorage.setItem('novageo_lang', currentLang);
+    } catch (e) {}
+
+    // Update document HTML lang attribute
+    document.documentElement.lang = (currentLang === 'zh' ? 'zh-HK' : 'en');
+
+    // Toggle active classes on all language buttons
+    getProtoLangEnButtons().forEach(btn => btn.classList.toggle('active', currentLang === 'en'));
+    getProtoLangZhButtons().forEach(btn => btn.classList.toggle('active', currentLang === 'zh'));
+
+    // Update cross-page links
+    updateCrossPageLinks(currentLang);
+
+    // Sync current URL query param without reload
+    if (syncUrl && window.history && window.history.replaceState) {
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', currentLang);
+        window.history.replaceState({}, '', url.toString());
+      } catch (e) {}
+    }
+
+    // Apply translations dictionary
+    if (typeof translations !== 'undefined' && translations[currentLang]) {
+      const dict = translations[currentLang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = dict[key];
+          } else {
+            el.innerHTML = dict[key];
+          }
+        }
+      });
+    }
+
+    // Update scan button text if idle
+    const runAuditBtn = document.getElementById('runAuditBtn');
+    if (runAuditBtn && !runAuditBtn.disabled) {
+      runAuditBtn.innerText = currentLang === 'en' ? 'Run Live GEO Scan →' : '啟動 Live GEO 掃描 →';
+    }
+
+    // Update score badges
+    updateScoreBadges();
+
+    // Re-render Lucide icons if any
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
       window.lucide.createIcons();
     }
   }
 
-  if (langEnBtn) langEnBtn.addEventListener('click', () => updateLanguage('en'));
-  if (langZhBtn) langZhBtn.addEventListener('click', () => updateLanguage('zh'));
+  // Initialize Language
+  const initialLang = getInitialLanguage();
+  updateLanguage(initialLang, false);
+
+  // Language Button Click Listeners (Delegated / All Buttons)
+  document.addEventListener('click', (e) => {
+    const enBtn = e.target.closest('#langEn, #protoMobileLangEn, .lang-btn-en');
+    if (enBtn) {
+      e.preventDefault();
+      updateLanguage('en', true);
+      return;
+    }
+
+    const zhBtn = e.target.closest('#langZh, #protoMobileLangZh, .lang-btn-zh');
+    if (zhBtn) {
+      e.preventDefault();
+      updateLanguage('zh', true);
+      return;
+    }
+  });
+
+  // Multi-tab storage sync
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'novageo_lang' && (e.newValue === 'en' || e.newValue === 'zh')) {
+      if (e.newValue !== currentLang) {
+        updateLanguage(e.newValue, false);
+      }
+    }
+  });
+
+  // Cross-page link click interceptor to guarantee sync
+  document.addEventListener('click', (e) => {
+    const anchor = e.target.closest('a[href]');
+    if (!anchor) return;
+    const href = anchor.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+
+    if (href.includes('../index.html') || href === '../' || href.includes('../#') || href.includes('../?')) {
+      try {
+        localStorage.setItem('novageo_lang', currentLang);
+      } catch (err) {}
+      const parts = href.split('#');
+      const basePath = parts[0].split('?')[0];
+      const hash = parts[1] ? `#${parts[1]}` : '';
+      anchor.setAttribute('href', `${basePath}?lang=${currentLang}${hash}`);
+    }
+  });
+
+  // Prototype Mobile Navigation Drawer Controller
+  const protoMobileToggle = document.getElementById('protoMobileMenuToggle');
+  const protoMobileDrawer = document.getElementById('protoMobileMenuDrawer');
+  const protoMobileOverlay = document.getElementById('protoMobileMenuOverlay');
+  const protoMobileClose = document.getElementById('protoMobileMenuClose');
+  const protoMobileLinks = document.querySelectorAll('#protoMobileMenuDrawer .mobile-nav-link');
+
+  function openProtoMobileMenu() {
+    if (protoMobileDrawer) {
+      protoMobileDrawer.classList.add('active');
+      protoMobileDrawer.setAttribute('aria-hidden', 'false');
+    }
+    if (protoMobileOverlay) protoMobileOverlay.classList.add('active');
+    if (protoMobileToggle) {
+      protoMobileToggle.classList.add('active');
+      protoMobileToggle.setAttribute('aria-expanded', 'true');
+    }
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeProtoMobileMenu() {
+    if (protoMobileDrawer) {
+      protoMobileDrawer.classList.remove('active');
+      protoMobileDrawer.setAttribute('aria-hidden', 'true');
+    }
+    if (protoMobileOverlay) protoMobileOverlay.classList.remove('active');
+    if (protoMobileToggle) {
+      protoMobileToggle.classList.remove('active');
+      protoMobileToggle.setAttribute('aria-expanded', 'false');
+    }
+    document.body.style.overflow = '';
+  }
+
+  if (protoMobileToggle) {
+    protoMobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = protoMobileDrawer && protoMobileDrawer.classList.contains('active');
+      if (isOpen) {
+        closeProtoMobileMenu();
+      } else {
+        openProtoMobileMenu();
+      }
+    });
+  }
+
+  if (protoMobileClose) {
+    protoMobileClose.addEventListener('click', closeProtoMobileMenu);
+  }
+
+  if (protoMobileOverlay) {
+    protoMobileOverlay.addEventListener('click', closeProtoMobileMenu);
+  }
+
+  protoMobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeProtoMobileMenu();
+    });
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeProtoMobileMenu();
+    }
+  });
+
+  // Reset on resize to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 960) {
+      closeProtoMobileMenu();
+    }
+  });
 
   // Preset Domain Chips
   const presetChips = document.querySelectorAll('.preset-chip');
@@ -140,15 +376,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial animation on load
   setTimeout(() => {
-    updateGauge(document.getElementById('overallSpinnerCircle'), document.getElementById('overallScoreVal'), null, 84, true);
-    updateGauge(document.getElementById('techSpinnerCircle'), document.getElementById('techScoreVal'), document.getElementById('techLinearFill'), 92, false);
-    updateGauge(document.getElementById('semSpinnerCircle'), document.getElementById('semScoreVal'), document.getElementById('semLinearFill'), 78, false);
-    updateGauge(document.getElementById('visSpinnerCircle'), document.getElementById('visScoreVal'), document.getElementById('visLinearFill'), 64, false);
+    updateGauge(document.getElementById('overallSpinnerCircle'), document.getElementById('overallScoreVal'), null, lastScores.overall, true);
+    updateGauge(document.getElementById('techSpinnerCircle'), document.getElementById('techScoreVal'), document.getElementById('techLinearFill'), lastScores.tech, false);
+    updateGauge(document.getElementById('semSpinnerCircle'), document.getElementById('semScoreVal'), document.getElementById('semLinearFill'), lastScores.sem, false);
+    updateGauge(document.getElementById('visSpinnerCircle'), document.getElementById('visScoreVal'), document.getElementById('visLinearFill'), lastScores.vis, false);
 
     // Mark steps completed for demo initial load
     for (let i = 1; i <= 4; i++) {
       setStepState(i, 'completed');
     }
+    updateScoreBadges();
   }, 300);
 
   // Run Audit Simulation Button Handler
@@ -189,23 +426,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const overallScore = Math.round((techScore * 0.35) + (semScore * 0.35) + (visScore * 0.30));
 
+        lastScores = {
+          tech: techScore,
+          sem: semScore,
+          vis: visScore,
+          overall: overallScore
+        };
+
         // Animate all spinners
         updateGauge(document.getElementById('overallSpinnerCircle'), document.getElementById('overallScoreVal'), null, overallScore, true);
         updateGauge(document.getElementById('techSpinnerCircle'), document.getElementById('techScoreVal'), document.getElementById('techLinearFill'), techScore, false);
         updateGauge(document.getElementById('semSpinnerCircle'), document.getElementById('semScoreVal'), document.getElementById('semLinearFill'), semScore, false);
         updateGauge(document.getElementById('visSpinnerCircle'), document.getElementById('visScoreVal'), document.getElementById('visLinearFill'), visScore, false);
 
-        // Update tech badge
-        const techBadge = document.getElementById('techBadge');
-        if (techBadge) techBadge.innerText = `${techScore}/100 • ${techScore >= 90 ? 'EXCELLENT' : 'GOOD'}`;
-
-        // Update sem badge
-        const semBadge = document.getElementById('semBadge');
-        if (semBadge) semBadge.innerText = `${semScore}/100 • ${semScore >= 80 ? 'GOOD' : 'IMPROVEMENT AVAILABLE'}`;
-
-        // Update vis badge
-        const visBadge = document.getElementById('visBadge');
-        if (visBadge) visBadge.innerText = `${visScore}/100 • ${visScore >= 70 ? 'MODERATE' : 'ACTION NEEDED'}`;
+        updateScoreBadges();
 
         runAuditBtn.disabled = false;
         runAuditBtn.innerText = currentLang === 'en' ? 'Run Live GEO Scan →' : '啟動 Live GEO 掃描 →';
@@ -228,11 +462,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', resizeCanvas);
 
     const nodes = [
-      { id: 'core', label: 'NovaGEO Schema', x: 0.5, y: 0.5, r: 24, color: '#1A63A6', isCenter: true },
-      { id: 'entity1', label: 'Company Profile (JSON-LD)', x: 0.22, y: 0.3, r: 16, color: '#16A34A' },
-      { id: 'entity2', label: 'Product & Service Facts', x: 0.78, y: 0.32, r: 16, color: '#16A34A' },
-      { id: 'entity3', label: 'Bilingual Vector Hooks', x: 0.28, y: 0.72, r: 16, color: '#F97316' },
-      { id: 'entity4', label: 'ChatGPT & Claude Citation', x: 0.74, y: 0.72, r: 16, color: '#1A63A6' }
+      { id: 'core', labelEn: 'NovaGEO Schema', labelZh: 'NovaGEO Schema 架構', x: 0.5, y: 0.5, r: 24, color: '#1A63A6', isCenter: true },
+      { id: 'entity1', labelEn: 'Company Profile (JSON-LD)', labelZh: '公司實體檔案 (JSON-LD)', x: 0.22, y: 0.3, r: 16, color: '#16A34A' },
+      { id: 'entity2', labelEn: 'Product & Service Facts', labelZh: '產品與服務事實數據', x: 0.78, y: 0.32, r: 16, color: '#16A34A' },
+      { id: 'entity3', labelEn: 'Bilingual Vector Hooks', labelZh: '雙語向量對齊鈎子', x: 0.28, y: 0.72, r: 16, color: '#F97316' },
+      { id: 'entity4', labelEn: 'ChatGPT & Claude Citation', labelZh: 'ChatGPT & Claude 引用', x: 0.74, y: 0.72, r: 16, color: '#1A63A6' }
     ];
 
     let angle = 0;
@@ -293,11 +527,12 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fill();
         ctx.shadowBlur = 0;
 
-        // Label
+        // Label based on currentLang
         ctx.fillStyle = '#0F172A';
         ctx.font = '600 12px Inter, sans-serif';
         ctx.textAlign = 'center';
-        ctx.fillText(n.label, nx, ny + n.r + 16);
+        const labelText = currentLang === 'zh' ? n.labelZh : n.labelEn;
+        ctx.fillText(labelText, nx, ny + n.r + 16);
       });
 
       requestAnimationFrame(drawKG);

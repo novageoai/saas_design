@@ -61,7 +61,9 @@ const translations = {
     pillar2_title: "2. Knowledge Graph Engineering",
     pillar2_desc: "Bilingual JSON-LD schema builder mapping SME entity networks for seamless AI ingestion.",
     pillar3_title: "3. Semantic Engineering Layer",
-    pillar3_desc: "Vector alignment engine optimizing context windows, entity density, and citation hooks."
+    pillar3_desc: "Vector alignment engine optimizing context windows, entity density, and citation hooks.",
+    sim_checklist_title: "LIVE GEO AUDIT EXECUTION PROGRESS",
+    proto_footer_rights: "NovaGEO Visual Platform Prototype © 2026. All rights reserved."
   },
   zh: {
     nav_audit: "AI 審計模擬器",
@@ -81,6 +83,7 @@ const translations = {
     sim_label_industry: "選擇企業所屬行業",
     sim_btn_run: "啟動 Live GEO 掃描 →",
     sim_presets_label: "熱門中小企預設範例：",
+    sim_checklist_title: "即時 GEO 審計執行進度",
 
     step_1_name: "域名及 SSL 安全握手",
     step_1_desc: "驗證端點安全性、規範 Header 及爬蟲存取權限",
@@ -121,6 +124,7 @@ const translations = {
     pillar2_title: "2. 知識圖譜工程",
     pillar2_desc: "雙語 JSON-LD 結構化數據建構器，將中小企實體網絡映射供 AI 無縫讀取。",
     pillar3_title: "3. 語義工程層",
-    pillar3_desc: "向量對齊引擎，優化上下文窗口、實體密度及 AI 引用鈎子 (Citation Hooks)。"
+    pillar3_desc: "向量對齊引擎，優化上下文窗口、實體密度及 AI 引用鈎子 (Citation Hooks)。",
+    proto_footer_rights: "NovaGEO 視覺化平台原型 © 2026 版權所有。"
   }
 };

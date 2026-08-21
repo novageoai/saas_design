@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NovaGEO Visual Prototype | Generative Engine Optimization SaaS Simulation</title>
   
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/Logo-no-text.PNG">
+
   <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,9 +25,7 @@
   <nav class="navbar">
     <div class="container nav-container">
       <a href="../index.html" class="logo">
-        <div class="logo-icon">
-          <svg viewBox="0 0 24 24" width="20" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        </div>
+        <img src="assets/Logo-no-text.PNG" alt="NovaGEO Logo" class="logo-img">
         <span>Nova<span class="brand-highlight">GEO</span></span>
         <span class="pill-badge" style="font-size: 0.68rem; padding: 2px 8px;">Prototype</span>
       </a>
@@ -36,17 +37,80 @@
         <li><a href="#features" class="nav-link" data-i18n="nav_features">Infrastructure</a></li>
       </ul>
 
-      <div style="display: flex; align-items: center; gap: 12px;">
+      <div class="nav-actions">
         <div class="lang-switch">
           <button class="lang-btn active" id="langEn">EN</button>
           <button class="lang-btn" id="langZh">繁中</button>
         </div>
-        <a href="../index.html" class="btn btn-secondary" style="padding: 8px 14px; font-size: 0.85rem;" data-i18n="nav_back">
+        <a href="../index.html" class="btn btn-secondary proto-desktop-back-btn" style="padding: 8px 14px; font-size: 0.85rem;" data-i18n="nav_back">
+          ← Back to Company Site
+        </a>
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-menu-toggle" id="protoMobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="protoMobileMenuDrawer">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Prototype Mobile Navigation Drawer & Backdrop -->
+  <div class="mobile-menu-overlay" id="protoMobileMenuOverlay"></div>
+  <div class="mobile-menu-drawer" id="protoMobileMenuDrawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Prototype Navigation Menu">
+    <div class="mobile-menu-header">
+      <div class="logo" style="font-size: 1.15rem;">
+        <img src="assets/Logo-no-text.PNG" alt="NovaGEO Logo" class="logo-img" style="width: 30px; height: 30px;">
+        <span>Nova<span class="brand-highlight">GEO</span></span>
+        <span class="pill-badge" style="font-size: 0.65rem; padding: 2px 6px;">Prototype</span>
+      </div>
+      <button class="mobile-menu-close" id="protoMobileMenuClose" aria-label="Close navigation menu">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+
+    <div class="mobile-menu-body">
+      <ul class="mobile-nav-links">
+        <li>
+          <a href="#audit" class="mobile-nav-link">
+            <i data-lucide="scan-line"></i>
+            <span data-i18n="nav_audit">Audit Simulator</span>
+          </a>
+        </li>
+        <li>
+          <a href="#scores" class="mobile-nav-link">
+            <i data-lucide="pie-chart"></i>
+            <span data-i18n="nav_scores">Score Breakdown</span>
+          </a>
+        </li>
+        <li>
+          <a href="#kg" class="mobile-nav-link">
+            <i data-lucide="network"></i>
+            <span data-i18n="nav_kg">Knowledge Graph</span>
+          </a>
+        </li>
+        <li>
+          <a href="#features" class="mobile-nav-link">
+            <i data-lucide="layers"></i>
+            <span data-i18n="nav_features">Infrastructure</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="mobile-menu-footer">
+        <div class="mobile-lang-row">
+          <span class="mobile-lang-label">Language / 語言:</span>
+          <div class="lang-switch">
+            <button class="lang-btn active" id="protoMobileLangEn">EN</button>
+            <button class="lang-btn" id="protoMobileLangZh">繁中</button>
+          </div>
+        </div>
+        <a href="../index.html" class="btn btn-secondary proto-mobile-back-btn" data-i18n="nav_back" style="width: 100%; justify-content: center;">
           ← Back to Company Site
         </a>
       </div>
     </div>
-  </nav>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero-section">
@@ -119,7 +183,7 @@
 
         <!-- Audit Real-time Step Progress -->
         <div class="checklist-container" style="margin-top: 24px;">
-          <div class="checklist-title">LIVE GEO AUDIT EXECUTION PROGRESS</div>
+          <div class="checklist-title" data-i18n="sim_checklist_title">LIVE GEO AUDIT EXECUTION PROGRESS</div>
           <div class="checklist-grid">
             <div class="step-row pending" id="step1Row">
               <div class="step-icon-box" id="step1Icon">1</div>
@@ -370,7 +434,7 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-container">
-      <div>NovaGEO Visual Platform Prototype © 2026. All rights reserved.</div>
+      <div data-i18n="proto_footer_rights">NovaGEO Visual Platform Prototype © 2026. All rights reserved.</div>
       <a href="../index.html" style="color: var(--brand-blue); font-weight: 600;" data-i18n="nav_back">
         ← Back to Company & Team Website
       </a>

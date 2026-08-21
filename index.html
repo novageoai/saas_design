@@ -16,6 +16,9 @@
   <meta property="og:image" content="assets/company_hero.png">
   <meta property="og:type" content="website">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/Logo-no-text.PNG">
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,9 +36,7 @@
   <nav class="navbar">
     <div class="container nav-container">
       <a href="#" class="logo">
-        <div class="logo-icon">
-          <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        </div>
+        <img src="assets/Logo-no-text.PNG" alt="NovaGEO Logo" class="logo-img">
         <span>Nova<span class="gradient-text">GEO</span></span>
         <span class="logo-tag">Company</span>
       </a>
@@ -57,9 +58,92 @@
           <button class="lang-btn" id="langZh">繁中</button>
         </div>
         <a href="#contact" class="btn btn-primary open-contact-modal" data-i18n="nav_contact">Connect With Us</a>
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenuDrawer">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Navigation Drawer & Backdrop -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+  <div class="mobile-menu-drawer" id="mobileMenuDrawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+    <div class="mobile-menu-header">
+      <a href="#" class="logo" style="font-size: 1.2rem;">
+        <img src="assets/Logo-no-text.PNG" alt="NovaGEO Logo" class="logo-img" style="width: 32px; height: 32px;">
+        <span>Nova<span class="gradient-text">GEO</span></span>
+        <span class="logo-tag">Company</span>
+      </a>
+      <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close navigation menu">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+
+    <div class="mobile-menu-body">
+      <ul class="mobile-nav-links">
+        <li>
+          <a href="#about" class="mobile-nav-link">
+            <i data-lucide="info"></i>
+            <span data-i18n="nav_about">About Us</span>
+          </a>
+        </li>
+        <li>
+          <a href="#vision" class="mobile-nav-link">
+            <i data-lucide="compass"></i>
+            <span data-i18n="nav_vision">Our Vision</span>
+          </a>
+        </li>
+        <li>
+          <a href="#research" class="mobile-nav-link">
+            <i data-lucide="cpu"></i>
+            <span data-i18n="nav_research">R&D Foundation</span>
+          </a>
+        </li>
+        <li>
+          <a href="#team" class="mobile-nav-link">
+            <i data-lucide="users"></i>
+            <span data-i18n="nav_team">Leadership Team</span>
+          </a>
+        </li>
+        <li>
+          <a href="#schedule" class="mobile-nav-link">
+            <i data-lucide="calendar"></i>
+            <span data-i18n="nav_roadmap">Strategic Schedule</span>
+          </a>
+        </li>
+        <li>
+          <a href="#future" class="mobile-nav-link">
+            <i data-lucide="sparkles"></i>
+            <span data-i18n="nav_future">Future Horizon</span>
+          </a>
+        </li>
+        <li class="mobile-nav-divider"></li>
+        <li>
+          <a href="./Prototype/index.html" class="mobile-nav-link prototype-highlight">
+            <i data-lucide="layers"></i>
+            <span data-i18n="nav_prototype">Platform Prototype</span>
+            <span class="mobile-link-badge">LIVE DEMO</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="mobile-menu-footer">
+        <div class="mobile-lang-row">
+          <span class="mobile-lang-label">Language / 語言:</span>
+          <div class="lang-switch">
+            <button class="lang-btn active" id="mobileLangEn">EN</button>
+            <button class="lang-btn" id="mobileLangZh">繁中</button>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-primary open-contact-modal mobile-cta-btn" data-i18n="nav_contact">
+          <i data-lucide="mail" style="width: 16px; height: 16px;"></i> Connect With Us
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- Hero Section -->
   <section class="hero-section">
@@ -411,9 +495,7 @@
     <div class="container">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
         <div class="logo">
-          <div class="logo-icon">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          </div>
+          <img src="assets/Logo-no-text.PNG" alt="NovaGEO Logo" class="logo-img" style="width: 30px; height: 30px;">
           <span>Nova<span class="gradient-text">GEO</span></span>
         </div>
 
