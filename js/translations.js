@@ -180,7 +180,7 @@ const translations = {
 
     t2_name: "黃婉婷 (Jessie WONG)",
     t2_role: "銷售與市場經理 (PIC)",
-    t2_edu: "香港城市大學 (CityU) 資訊管理學士 (主修營銷)",
+    t2_edu: "香港城市大學 (CityU) 資訊管理學士 (副修營銷)",
     t2_bio: "黃小姐負責商業營運、市場調研與戰略合作。精於中小企客戶需求驗證、B2B 銷售執行及產學研合作聯繫。",
 
     t3_name: "蔡靜嵐 (Natalie CHOI)",
